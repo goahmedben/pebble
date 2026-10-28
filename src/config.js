@@ -4,7 +4,7 @@ const params = new URLSearchParams(location.search);
 const local = params.get("env") === "local";
 
 // Fill these in before deploying. Both are public by design.
-const CAMELUS_KEY = ""; // pk_live_… from Camelus → Settings → Products → pebble → Feedback widget
+const CAMELUS_KEY = "pk_live_3XJ1xU5oeAYeXMRm1RJf2IRz"; // pk_live_… from Camelus → Settings → Products → pebble → Feedback widget
 const GA4_ID = ""; // G-… measurement ID of the GA4 property Alpaga reads
 // Demo users get plus-addresses of this inbox (you+ana@…), so Camelus's "shipped" emails reach you.
 const MAILBOX = "";
