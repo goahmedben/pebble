@@ -1,0 +1,3 @@
+node_modules/
+# The test scenario lists the planted bugs; keep it out of the repo the Vicunia agent works on.
+E2E-SCENARIO.md

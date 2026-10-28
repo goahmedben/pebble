@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pebble · tiny habit tracker</title>
+    <meta name="description" content="Pebble is a tiny habit tracker. Check in once a day, keep your streak." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="./">
+        <img src="favicon.svg" alt="" width="28" height="28" />
+        <span>Pebble</span>
+      </a>
+      <div class="user" data-testid="user">
+        <label for="persona">Signed in as</label>
+        <select id="persona" data-testid="persona">
+          <option value="">Guest</option>
+          <option value="u_ana">Ana (Pro)</option>
+          <option value="u_ben">Ben (Free)</option>
+          <option value="u_chloe">Chloé (Free, fr)</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Small habits, every day.</h1>
+        <p>Check in once a day. Pebble keeps your streak and shows how your week went.</p>
+      </section>
+
+      <form id="add" class="add" data-testid="add-form" autocomplete="off">
+        <label for="name" class="sr-only">New habit</label>
+        <input id="name" name="name" placeholder="New habit, e.g. Read 10 pages" maxlength="60" data-testid="habit-name" />
+        <button type="submit" data-testid="add-habit">Add habit</button>
+      </form>
+
+      <p id="empty" class="empty" data-testid="empty">No habits yet. Add your first one above.</p>
+      <ul id="habits" class="habits" data-testid="habits"></ul>
+
+      <section class="actions">
+        <button id="seed" type="button" class="ghost" data-testid="seed">Load sample habits</button>
+        <button id="reset" type="button" class="ghost" data-testid="reset">Clear all data</button>
+      </section>
+
+      <section class="help">
+        <h2>Something wrong? Missing a feature?</h2>
+        <p>Tell us. Every message is read, and you'll hear back when it ships.</p>
+        <button id="feedback" type="button" data-testid="open-feedback">Send feedback</button>
+        <button id="bug" type="button" class="ghost" data-testid="report-bug">Report a bug</button>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Pebble 1.0 · test project for Alpaga, Camelus and Vicunia</span>
+      <span id="status" data-testid="integrations"></span>
+    </footer>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
