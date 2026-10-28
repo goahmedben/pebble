@@ -100,7 +100,13 @@ function render() {
 $("add").addEventListener("submit", (e) => {
   e.preventDefault();
   const input = $("name");
-  habits = [...habits, createHabit(input.value)];
+  const habit = createHabit(input.value);
+  if (!habit) {
+    input.value = "";
+    input.focus();
+    return;
+  }
+  habits = [...habits, habit];
   input.value = "";
   save();
   render();

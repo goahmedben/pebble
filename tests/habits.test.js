@@ -30,6 +30,16 @@ test("createHabit stores the name and creation day", () => {
   assert.deepEqual(h.done, []);
 });
 
+test("createHabit rejects empty or whitespace-only names", () => {
+  assert.equal(createHabit(""), null);
+  assert.equal(createHabit("   \t "), null);
+  assert.equal(createHabit(undefined), null);
+});
+
+test("createHabit trims surrounding whitespace from the name", () => {
+  assert.equal(createHabit("  Walk  ").name, "Walk");
+});
+
 test("toggleDone adds then removes a day, keeping order", () => {
   let h = habit(["2026-10-27"]);
   h = toggleDone(h, "2026-10-25");
