@@ -43,6 +43,17 @@ test("currentStreak counts consecutive days ending today", () => {
   assert.equal(currentStreak(habit(["2026-10-25", "2026-10-28"]), "2026-10-28"), 1);
 });
 
+test("currentStreak stays active while today is not yet done", () => {
+  const h = habit(["2026-10-26", "2026-10-27"]);
+  assert.equal(currentStreak(h, "2026-10-28"), 2);
+  assert.equal(currentStreak(toggleDone(h, "2026-10-28"), "2026-10-28"), 3);
+});
+
+test("currentStreak resets once a full day is missed", () => {
+  assert.equal(currentStreak(habit(["2026-10-26", "2026-10-27"]), "2026-10-29"), 0);
+  assert.equal(currentStreak(habit([]), "2026-10-28"), 0);
+});
+
 test("longestStreak finds the best run", () => {
   assert.equal(longestStreak(habit(["2026-10-01", "2026-10-02", "2026-10-05", "2026-10-06", "2026-10-07"])), 3);
   assert.equal(longestStreak(habit([])), 0);

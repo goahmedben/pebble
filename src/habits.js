@@ -26,10 +26,11 @@ export function toggleDone(habit, key) {
   return { ...habit, done };
 }
 
-// Consecutive done days ending today.
+// Consecutive done days ending today. While today is still open (not done yet),
+// the streak ending yesterday stays active; it only breaks once a day is missed.
 export function currentStreak(habit, today = dayKey()) {
   let streak = 0;
-  let day = today;
+  let day = habit.done.includes(today) ? today : addDays(today, -1);
   while (habit.done.includes(day)) {
     streak += 1;
     day = addDays(day, -1);
