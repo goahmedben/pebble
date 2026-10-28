@@ -64,8 +64,16 @@ test("completionRate over the last 7 days", () => {
   assert.equal(completionRate(habit([]), "2026-10-28", 7), 0);
 });
 
-test("formatDay renders a US date", () => {
+test("formatDay renders a French date, day before month", () => {
+  assert.equal(formatDay("2026-10-28", "fr-FR"), "28/10/2026");
+  assert.equal(formatDay("2026-03-05", "fr-FR"), "05/03/2026");
+  assert.equal(formatDay("2026-10-28"), "28/10/2026");
+  assert.equal(formatDay("2026-10-28", "fr-FR").slice(0, 5), "28/10");
+});
+
+test("formatDay follows the given locale", () => {
   assert.equal(formatDay("2026-10-28", "en-US"), "10/28/2026");
+  assert.equal(formatDay("2026-10-28", "en-GB"), "28/10/2026");
 });
 
 test("lastDays returns oldest first, ending today", () => {
