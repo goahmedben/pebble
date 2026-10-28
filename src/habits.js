@@ -12,10 +12,13 @@ export function addDays(key, n) {
   return dayKey(new Date(y, m - 1, d + n));
 }
 
+// Returns null when the name is empty or whitespace-only.
 export function createHabit(name, now = new Date()) {
+  const trimmed = String(name ?? "").trim();
+  if (!trimmed) return null;
   return {
     id: `h_${now.getTime().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
-    name: String(name),
+    name: trimmed,
     createdAt: dayKey(now),
     done: [],
   };
