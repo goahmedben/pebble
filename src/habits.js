@@ -57,9 +57,16 @@ export function completionRate(habit, today = dayKey(), days = 7) {
   return Math.round((hits / days) * 100);
 }
 
-export function formatDay(key, locale = "en-US") {
-  const [y, m, d] = key.split("-");
-  return `${m}/${d}/${y}`;
+// Renders a day key in the given locale's numeric order (fr-FR: 28/10/2026).
+// Formatted in UTC so the calendar day never shifts with the host time zone.
+export function formatDay(key, locale = "fr-FR") {
+  const [y, m, d] = key.split("-").map(Number);
+  return new Intl.DateTimeFormat(locale || "fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(y, m - 1, d)));
 }
 
 export function lastDays(today = dayKey(), days = 7) {
