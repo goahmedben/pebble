@@ -59,6 +59,13 @@ test("currentStreak stays active while today is not yet done", () => {
   assert.equal(currentStreak(toggleDone(h, "2026-10-28"), "2026-10-28"), 3);
 });
 
+test("currentStreak keeps a 9-day streak overnight, across a month boundary", () => {
+  const h = habit(lastDays("2026-10-31", 9));
+  assert.equal(currentStreak(h, "2026-11-01"), 9);
+  assert.equal(currentStreak(toggleDone(h, "2026-11-01"), "2026-11-01"), 10);
+  assert.equal(currentStreak(h, "2026-11-02"), 0);
+});
+
 test("currentStreak resets once a full day is missed", () => {
   assert.equal(currentStreak(habit(["2026-10-26", "2026-10-27"]), "2026-10-29"), 0);
   assert.equal(currentStreak(habit([]), "2026-10-28"), 0);
